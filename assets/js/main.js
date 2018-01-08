@@ -348,6 +348,12 @@
 
 			}
 
+		/* Lightbox Assignment */
+
+		$( ".columns img" ).each(function() {
+			$( this ).featherlight( $( this ).attr( 'src' ) ).addClass( 'lightbox-thumb' );
+		});
+
 	});
 
 })(jQuery);
