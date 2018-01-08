@@ -2023,12 +2023,12 @@
 		font-weight: 600;
 		padding: 1em 2em;
 		text-align: left;
-		background-color: #c35d77;
+		background-color: #172121;
 	}
 
 	table .row-header {
 		border: none;
-		background-color: #5d7dc3;
+		background-color: #50858B;
 	}
 
 	table .row-header td {
@@ -2684,8 +2684,8 @@
 	}
 
 	body.landing #header {
-		background: transparent;
-		position: absolute;
+		/*background: transparent;*/
+		position: fixed;
 	}
 
 	body {
