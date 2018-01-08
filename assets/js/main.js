@@ -114,14 +114,14 @@
 						on = function() {
 
 							$this
-								.css('background-position', 'center 0px');
+								.css('background-position-y', '0');
 
 							$window
 								.on('scroll._parallax', function() {
 
 									var pos = parseInt($window.scrollTop()) - parseInt($this.position().top);
 
-									$this.css('background-position', '-14em ' + (pos * -0.15) + 'px');
+									$this.css('background-position-y',  (pos * 0.05) + 'px');
 
 								});
 
@@ -130,7 +130,7 @@
 						off = function() {
 
 							$this
-								.css('background-position', '');
+								.css('background-position-y', '');
 
 							$window
 								.off('scroll._parallax');
@@ -348,11 +348,13 @@
 
 			}
 
-		/* Lightbox Assignment */
+		/* Lightbox Assignment
 
 		$( ".columns img" ).each(function() {
 			$( this ).featherlight( $( this ).attr( 'src' ) ).addClass( 'lightbox-thumb' );
 		});
+
+		*/
 
 	});
 
