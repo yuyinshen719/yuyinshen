@@ -322,18 +322,15 @@
 		flex-grow: 1;
 	}
 
-	.content-box:nth-child(1) {
+	.content-box:nth-child(even) {
 		background-color: #50858B
 		/*background-image: url('../../images/con2.jpg');*/
 	}
-	.content-box:nth-child(2) {
+	.content-box:nth-child(odd) {
 		background-color: #697F7F
 		/*background-image: url('../../images/con4.jpg');*/
 	}
-	.content-box:nth-child(3) {
-		background-color: #50858B
-		/*background-image: url('../../images/con5.jpg');*/
-	}
+
 
 /* Icon */
 
