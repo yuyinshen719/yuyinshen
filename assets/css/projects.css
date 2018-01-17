@@ -313,6 +313,73 @@
 		}
 	}
 
+/* Carousel */
+	.carousel {
+		position: relative;
+		max-width: 100%;
+		min-height: 20em;
+		max-height: 100vh;
+	}
+
+	.carousel-prev,
+	.carousel-next {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 15%;
+		background-color: rgba( 34,34,34, 0);
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: 25%;
+		border: none;
+		opacity: 0.3;
+		z-index: 10;
+		transition-property: all;
+		transition-duration: 500ms;
+	}
+
+	.carousel-prev:hover,
+	.carousel-next:hover {
+		cursor: pointer;
+		background-color: rgba( 34,34,34, 0.3);
+		opacity: 1;
+	}
+
+	.carousel-prev {
+		left: 0;
+		background-image: url('images/left-arrow.png');
+	}
+
+	.carousel-next {
+		right: 0;
+		background-image: url('images/right-arrow.png');
+	}
+
+	.carousel-container {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		text-align: center;
+	}
+
+	.carousel-slide {
+		display: none;
+		opacity: 0;
+		transition-property: opacity;
+		transition-duration: 500ms;
+	}
+
+	.carousel-slide-active {
+		display: block;
+		opacity: 1;
+	}
+
+	.carousel-slide img,
+	.carousel-slide iframe {
+		max-width: 100%;
+	}
+
 /* Content Box */
 
 	.content-box {
