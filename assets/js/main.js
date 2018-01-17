@@ -48,12 +48,6 @@
 				speed: 2000
 			});
 
-		// Dropdowns.
-			$('#nav > ul').dropotron({
-				alignment: 'right',
-				hideDelay: 350
-			});
-
 		// Off-Canvas Navigation.
 
 			// Title Bar.
@@ -348,13 +342,95 @@
 
 			}
 
+
+		/* Carousel */
+			var $carousels = $('.carousel'),
+				$firstSlide, $lastSlide, $activeSlide, $prevSlide, $nextSlide;
+
+			$carousels.each(function() {
+				var $this = $(this);
+
+				$firstSlide = $( $this.find( '.carousel-slide' ).first() );
+				$lastSlide = $( $this.find( '.carousel-slide' ).last() );
+
+				var updateSlides = function() {
+					$activeSlide = $( $this.find( '.carousel-slide-active' ) );
+					$nextSlide = $( $activeSlide.next( '.carousel-slide' ) );
+					$prevSlide = $( $activeSlide.prev( '.carousel-slide' ) );
+				};
+
+				var showNextSlide = function() {
+					// remove 'carousel-slide-active' from current slide
+					$activeSlide.removeClass( 'carousel-slide-active' );
+
+					// assign 'carousel-slide-active' to next slide
+					// if no "next" exists, go to the first
+					if ( $nextSlide.length ){
+						$nextSlide.addClass( 'carousel-slide-active' );
+					} else {
+						$firstSlide.addClass( 'carousel-slide-active' );
+					}
+
+					stopVideo( $activeSlide );
+					updateSlides();
+				};
+
+				var showPrevSlide = function() {
+					// remove 'carousel-slide-active' from current slide
+					$activeSlide.removeClass( 'carousel-slide-active' );
+
+					// assign 'carousel-slide-active' to prev slide
+					// if no "prev" exists, go to the last
+					if ( $prevSlide.length ){
+						$prevSlide.addClass( 'carousel-slide-active' );
+					} else {
+						$lastSlide.addClass( 'carousel-slide-active' );
+					}
+
+					stopVideo( $activeSlide );
+					updateSlides();
+				};
+
+				updateSlides();
+				
+				$this.find( '.carousel-prev' ).on( 'click', showPrevSlide );
+				$this.find( '.carousel-next' ).on( 'click', showNextSlide );
+
+				$this.keydown(function(e) {
+					switch(e.which) {
+						case 37: // left
+							showPrevSlide()
+						break;
+				
+						case 39: // right
+							showNextSlide()
+						break;
+				
+						default: return; // exit this handler for other keys
+					}
+					e.preventDefault(); // prevent the default action (scroll / move caret)
+				});
+			});
+
+		
+
+		/* Video Controls */
+		var stopVideo = function ( $element ) {
+			var $iframe = $( $element.find( 'iframe' ) );
+			if ( $iframe.length ) {
+				var iframeSrc = $iframe.attr('src');
+				$iframe.attr('src', iframeSrc);
+			}
+		};
+
+
 		/* Lightbox Assignment
 
-		$( ".columns img" ).each(function() {
-			$( this ).featherlight( $( this ).attr( 'src' ) ).addClass( 'lightbox-thumb' );
-		});
+			$( ".columns img" ).each(function() {
+				$( this ).featherlight( $( this ).attr( 'src' ) ).addClass( 'lightbox-thumb' );
+			});
 
-		*/
+			*/
 
 	});
 
