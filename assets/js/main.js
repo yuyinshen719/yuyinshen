@@ -309,7 +309,7 @@
 				$( headerList ).each( function( index, elem ) {
 					var sectionID = 'section' + index;
 					$( elem ).attr( 'id', sectionID );
-					$( navList ).append( '<li><a href="#' + sectionID + '">' + $(elem).text() + '</a></li>' );
+					$( navList ).append( '<li><a href="#' + sectionID + '" class="scrolly">' + $(elem).text() + '</a></li>' );
 				});
 
 				$( '.project-nav' ).append( navList );
@@ -412,25 +412,124 @@
 				});
 			});
 
-		
-
-		/* Video Controls */
-		var stopVideo = function ( $element ) {
-			var $iframe = $( $element.find( 'iframe' ) );
-			if ( $iframe.length ) {
-				var iframeSrc = $iframe.attr('src');
-				$iframe.attr('src', iframeSrc);
-			}
-		};
 
 
-		/* Lightbox Assignment
+		/* Lightbox */
+		$('body').prepend('<div id="lightbox">' + 
+								'<div class="lightbox-controls">' +
+									'<button class="lightbox-close" name="close"></button>' +
+									'<button class="lightbox-prev"></button>' +
+									'<button class="lightbox-next"></button>' +
+								'</div>' +
+								'<div class="lightbox-content"></div>' +
+							'</div>');
 
-			$( ".columns img" ).each(function() {
-				$( this ).featherlight( $( this ).attr( 'src' ) ).addClass( 'lightbox-thumb' );
+		var $lightbox = $('#lightbox'),
+		elementSelectors = '#main img',
+		$fullscreenElements = $( elementSelectors ),
+		$activeElem, activeIndex, prevIndex, nextIndex, savedScroll;
+
+		$lightbox.each(function() {
+			var $this = $(this);
+
+			var setContent = function( $newContent ) {
+				$this.find('.lightbox-content').append( $newContent );
+			};
+			
+			var clearContents = function() {
+				stopVideo( $this );
+				$this.find('.lightbox-content').empty();
+			};
+	
+			var updateContents = function( $content ) {
+				clearContents();
+				activeIndex = $content.attr('data-lb-index');
+				prevIndex = activeIndex - 1;
+				nextIndex = Number( activeIndex ) + 1;
+
+				$activeElem = $content.clone();
+				$activeElem.removeAttr('style class id');
+
+				$activeElem.addClass('lightbox-active-element');
+
+				setContent( $activeElem );
+
+				savedScroll = $('html').scrollTop();
+				$('html').scrollTop(0);
+			};
+
+			var showLightbox = function( $content ) {
+				updateContents( $content );
+				$this.show();
+			};
+
+			var closeLightbox = function() {
+				clearContents();
+				$('html').scrollTop( savedScroll );
+				$this.hide();
+			};
+	
+			var showNext = function() {
+				var $nextElem = $('[data-lb-index=' + nextIndex + ']');
+
+				if ( $nextElem.length ) {
+					updateContents( $nextElem );
+				} else {
+					updateContents( $( elementSelectors ).first() );
+				}
+			};
+	
+			var showPrev = function() {
+				var $prevElem = $('[data-lb-index=' + prevIndex + ']');
+
+				if ( $prevElem.length ) {
+					updateContents( $prevElem );
+				} else {
+					updateContents( $( elementSelectors ).last() );
+				}
+			};
+			
+			$this.find( '.lightbox-close' ).on( 'click', closeLightbox );
+			$this.find( '.lightbox-prev' ).on( 'click', showPrev );
+			$this.find( '.lightbox-next' ).on( 'click', showNext );
+	
+			$this.keydown(function(e) {
+				switch(e.which) {
+					case 37: // left
+						showPrev()
+					break;
+			
+					case 39: // right
+						showNext()
+					break;
+
+					case 27: // escape
+						closeLightbox()
+					break;
+			
+					default: return; // exit this handler for other keys
+				}
+				e.preventDefault(); // prevent the default action (scroll / move caret)
 			});
 
-			*/
+			$fullscreenElements.each(function(i){
+				$(this).addClass('thumbnail');
+				$(this).attr('data-lb-index', i);
+				$(this).on('click', function(){
+					showLightbox( $(this) );
+				});
+			});
+		});
+
+
+		/* Video Controls */
+			var stopVideo = function ( $element ) {
+				var $iframe = $( $element.find( 'iframe' ) );
+				if ( $iframe.length ) {
+					var iframeSrc = $iframe.attr('src');
+					$iframe.attr('src', iframeSrc);
+				}
+			};
 
 	});
 
