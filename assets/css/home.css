@@ -248,6 +248,10 @@
 				margin: 0 auto;
 			}
 
+			#six .image.fit.main img {
+				width: 85%;
+			}
+
 
 
 /* Goto Next */
@@ -470,9 +474,9 @@
 			right: 0;
 		}
 
-		.spotlight.style1 .content {
+		/*.spotlight.style1 .content {
 			top: 75vh;
-		}
+		}*/
 
 		.spotlight.inactive .content {
 			opacity: 0;
@@ -539,6 +543,53 @@
 		#three {
 			background-image: url('../../images/purple-rectangle.png');
 		}
+
+		#four .spotlight {
+			background-size: 20%;
+			background-position-x: 20%;
+		}
+
+		#four {
+			background-image: url('../../images/Home_Shopping_bg.png');
+		}
+
+		#four img {
+		    width: 17%;
+		}
+
+		#five {
+			background-image: url('../../images/Home_Out_bg.png');
+		}
+
+		#five .spotlight {
+			background-size: 40%;
+			background-position-x: 10%;
+		}
+
+		#five img {
+		    width: 50%;
+		}
+
+		#six {
+			background-image: url('../../images/Home_Lonely_bg.png');
+		}
+
+		#six .spotlight {
+			background-size: 60%;
+			background-position-x: 80%;
+		}
+
+		#seven {
+			background-image: url('../../images/Home_CW_bg.png');
+		}
+
+		#seven .spotlight {
+			background-size: 50%;
+			
+		}
+
+
+
 
 	body.is-touch .spotlight {
 		background-attachment: scroll;
@@ -748,7 +799,7 @@
 				.spotlight .image.main {
 					display: block;
 					margin: 0;
-					height: 50vh;
+					height: 70vh;
 					overflow: hidden;
 				}
 
@@ -765,23 +816,47 @@
 					width: 100% !important;
 				}
 
-				.spotlight .main.image img {
-					top: 15%;
-				}
+				/*.spotlight .main.image img {
+					top: 25%;
+				}*/
 
-				#one.parallax-section {
+				#one.parallax-section,
+				#four.parallax-section,
+				#seven.parallax-section {
 					background-size: 140%;
 					background-position: center top;
 				}
 
-				#one .spotlight .main.image img {
-					top: 3%;
+				#one .spotlight .main.image img{
+					top: 10%;
+					width: 50%;
+				}
+
+				#two .spotlight .main.image img{
+					top: 15%;
 					width: 50%;
 				}
 
 				#three .spotlight .main.image img {
 					top: 30%;
 				}
+
+				#four .spotlight .main.image img {
+					top: 10%;
+					width: 25%;
+				}
+
+				#five .spotlight .main.image img {
+					top: 10%;
+					width: 50%;
+				}
+
+				#seven .spotlight .main.image img {
+					top: 25%;
+					width: 60%;
+				}
+
+
 
 				.spotlight .goto-next {
 					display: none;
@@ -826,6 +901,7 @@
 		}
 	}
 
+
 /* Small */
 
 	@media screen and (max-width: 736px) {
@@ -866,6 +942,12 @@
 				width: 1.2em;
 			}
 
+		/* backgrounds */
+			#six {
+				background-size: 115%;
+				background-position: top center;
+			}
+
 		/* Spotlight */
 
 			.spotlight {
@@ -877,7 +959,22 @@
 				}
 
 				.spotlight .image.main img {
-					top: 33%;
+					top: 15%;
+				}
+
+				#one .spotlight .image.main img {
+					
+					width: 35%;
+				}
+
+				#four .spotlight .main.image img {
+					width: 20%;
+					top:10%;
+				}
+
+				#five .spotlight .main.image img {
+					top:5%;
+					width: 40%;
 				}
 
 				.spotlight .content {
@@ -936,11 +1033,36 @@
 			}
 
 			#one .spotlight .main.image img {
-				top: 15%;
+				top: 25%;
+				background-size: 170%;
+				width: 50%;
 			}
 
-			#one.parallax-section {
+			#two .spotlight .main.image img {
+				top: 25%;
 				background-size: 170%;
+			}
+
+			#three .spotlight .main.image img {
+				top: 38%;
+				background-size: 170%;
+			}
+
+			#four .spotlight .main.image img {
+				top: 10%;
+				width: 30%;
+			}
+
+			#five .spotlight .main.image img {
+				top: 15%;
+				width: 50%;
+			}
+
+			#one.parallax-section,
+			#four.parallax-section,
+			#seven.parallax-section {
+				background-size: 170%;
+			}
 			}
 
 		/* Wrapper */
